@@ -1,6 +1,8 @@
-import {initializeApp} from "firebase/app"
-import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth"
-import {storageSave, storageRemove, storageGet} from './Storage'
+import {initializeApp} from "firebase/app";
+import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import {storageSave, storageRemove, storageGet} from './Storage';
+import {getFirestore} from "firebase/firestore";
+import {collection, addDoc, getDocs, deleteDoc, doc} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCiOEGf-E4y84R8fywoaGUZVD6FVjPRVVk",
@@ -12,7 +14,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebase = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
+const db = getFirestore();
 const auth = getAuth();
 
 export const login = (email, password) => {
@@ -35,11 +38,54 @@ export const logoff = () => {
     signOut(auth).then(() => {
       resolve()
     }).catch((error) => {
-      reject()
+      reject(error)
     });
   })
-  
-  
+}
+
+export const saveObras = (dados) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            await addDoc(collection(db, "obras"), dados)
+            resolve()
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+export const getObras = () => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            const querySnapshot = await getDocs(collection(db, "obras"));
+            let dados = []
+
+            querySnapshot.forEach((doc) => {
+                dados.push({
+                    id: doc.id,
+                    nome: doc.data().nome,
+                    categoria: doc.data().categoria,
+                    capa: doc.data().capa,
+                    progresso: doc.data().progresso,
+                    sinopse: doc.data().sinopse
+                })
+            });
+            resolve(dados)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+export const deleteObras = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            await deleteDoc(doc(db, "obras", id))
+            resolve()
+        } catch (error) {
+            reject(error)
+        }
+    })
 }
 
 export const isAuthenticated = () => storageGet("TOKEN_KEY") !== null;

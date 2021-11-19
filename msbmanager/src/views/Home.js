@@ -4,7 +4,7 @@ export default function Home() {
 
     return (
         <div>
-            Olá Mundo
+            <h1>Bem-vindo ao app MSBmanager</h1>
         </div>
     )
 }

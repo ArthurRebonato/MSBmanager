@@ -25,6 +25,7 @@ export default function Menu() {
                         <Button variant="outlined" 
                         size="medium" 
                         endIcon={<HomeIcon />} 
+                        onClick={() => history.push("/home")}
                         fullWidth>
                         Home
                         </Button>
@@ -35,6 +36,7 @@ export default function Menu() {
                         <Button variant="outlined" 
                         size="medium" 
                         endIcon={<AddCircleOutlineIcon />} 
+                        onClick={() => history.push("/obras")}
                         fullWidth>
                         Fazer Cadastros
                         </Button>
@@ -45,6 +47,7 @@ export default function Menu() {
                         <Button variant="outlined" 
                         size="medium" 
                         endIcon={<ListAltIcon />} 
+                        onClick={() => history.push("/obraslista")}
                         fullWidth>
                         Visualizar Lista
                         </Button>
@@ -76,6 +79,7 @@ export default function Menu() {
                         size="medium" 
                         endIcon={<LogoutIcon />} 
                         onClick={efetuarLogoff}
+                        color="error"
                         fullWidth>
                         Logoff
                         </Button>
