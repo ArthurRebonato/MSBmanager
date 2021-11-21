@@ -15,8 +15,9 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
-import MenuLogin from '../components/MenuLogin';
 import Footer from '../components/Footer';
+import Banner from '../components/Banner';
+import HeaderLogin from '../components/HeaderLogin';
 
 function Login() {
    let history = useHistory();
@@ -76,7 +77,8 @@ function Login() {
 
   return (
       <div>
-        <MenuLogin />
+        <Banner />
+        <HeaderLogin />
         <Grid container spacing={1}>
           <Grid item xs={5.5}></Grid>
           <Grid item xs={4}><h1>Login</h1></Grid>
@@ -110,7 +112,7 @@ function Login() {
           <Grid item xs={6}>
             <TextField type="email" 
             id="filled-basic" 
-            label="E-mail" 
+            label="Email" 
             variant="filled" 
             margin="dense"
             value={email}

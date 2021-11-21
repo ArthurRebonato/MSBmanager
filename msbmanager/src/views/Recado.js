@@ -19,11 +19,12 @@ export default function Recado() {
 
     return (
         <div>
-            <h1>Recados</h1>
             <Grid container spacing={2}>
+                <Grid item xs={5.3}></Grid>
+                <Grid item xs={6.7}><h1>Recados</h1></Grid>
                 {recados.map((row) => (
                     <Grid item xs={4}>
-                        <Card sx={{ width: 'fullWidth', marginTop: '2rem', marginLeft: '2rem', marginRight: '2rem', textAlign: 'center'}}>
+                        <Card sx={{ width: 'fullWidth', marginLeft: '2rem', marginRight: '2rem', textAlign: 'center'}}>
                                 <CardContent>
                                     <Typography variant="h5" component="div">
                                         {row.assunto}
@@ -41,6 +42,7 @@ export default function Recado() {
                         </Card>
                     </Grid>
                 ))}
+                <Grid item xs={5}></Grid>
             </Grid>
             
             

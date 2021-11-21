@@ -10,6 +10,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useHistory} from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ObrasCadastro() {
     let history = useHistory();
@@ -18,6 +22,8 @@ export default function ObrasCadastro() {
     const [categoria, setCategoria] = useState("")
     const [capa, setCapa] = useState("")
     const [progresso, setProgresso] = useState("")
+    const [msg, setMsg] = useState("")
+    const [open, setOpen] = React.useState(false);
 
     const save = async () => {
         let objeto = {
@@ -30,17 +36,42 @@ export default function ObrasCadastro() {
         try{
             await saveObras(objeto)
             history.push("/obraslista")
-            console.log("dados salvos")
         } catch(error){
-            console.log(error)
+            setMsg(error)
+            setOpen(true)
         }
        
     }
 
     return (
         <div>
-            <h1>Cadastro Filmes/Séries/Livros</h1>
             <Grid container spacing={2}>
+                <Grid item xs={5}></Grid>
+                <Grid item xs={7}><h1>Cadastro Obras</h1></Grid>
+                <Grid item xs={4}>
+                    <Collapse in={open}>
+                    <Alert severity="error"
+                        action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                            setOpen(false);
+                            }}
+                            fullWidth
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                        }
+                        sx={{ mb: 2 }}
+                    >
+                        {msg}
+                    </Alert>
+                    </Collapse>
+                </Grid>
+                <Grid item xs={8}></Grid>
+                <Grid item xs={2.5}></Grid>
                 <Grid item xs={4}>
                     <TextField type="text" 
                     id="filled-basic" 
@@ -52,7 +83,7 @@ export default function ObrasCadastro() {
                     onChange={(e)=> setNome(e.target.value)}
                     />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={5.5}>
                     <FormControl sx={{minWidth: 437}}>
                         <InputLabel id="demo-simple-select-standard-label">Categoria</InputLabel>
                         <Select
@@ -70,7 +101,7 @@ export default function ObrasCadastro() {
                         </Select>
                     </FormControl>
                 </Grid>
-                <Grid item xs={4}></Grid>
+                <Grid item xs={2.5}></Grid>
                 <Grid item xs={4}>
                     <TextField type="text" 
                     id="filled-basic" 
@@ -94,7 +125,7 @@ export default function ObrasCadastro() {
                     />
                 </Grid>
                 <Grid item xs={4}></Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4.6}>
                     <TextField type="text" 
                     id="filled-basic" 
                     label="Sinopse" 
@@ -107,8 +138,7 @@ export default function ObrasCadastro() {
                     onChange={(e)=> setSinopse(e.target.value)}
                     />
                 </Grid>
-                <Grid item xs={8}></Grid>
-                <Grid item xs={2}></Grid>
+                <Grid item xs={4.3}></Grid>
                 <Grid item xs={4}>
                     <Stack direction="row" spacing={2}>
                         <Button variant="contained" 
@@ -121,6 +151,7 @@ export default function ObrasCadastro() {
                         </Button>
                     </Stack>
                 </Grid>
+                <Grid item xs={5}></Grid>
             </Grid>
         </div>
     )

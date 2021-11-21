@@ -28,8 +28,8 @@ export const login = (email, password) => {
     .catch((error) => {
       storageRemove("TOKEN_KEY")
       let erro = error.code
-      if (erro === "auth/wrong-password")
-        reject("Usuário ou Senha Inválidos!")
+      if (erro === "auth/wrong-password") {
+        reject("Usuário ou Senha Inválidos!")}
       else
         reject("Algo deu errado!")
     })
@@ -110,7 +110,7 @@ export const saveRecados = (dados) => {
           reject(error)
       }
   })
-}
+} 
 
 export const getRecados = () => {
   return new Promise(async (resolve, reject) => {

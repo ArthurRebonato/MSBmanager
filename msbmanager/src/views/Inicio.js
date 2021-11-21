@@ -1,8 +1,10 @@
 import React, {useState, useLayoutEffect} from 'react'
-import MenuLogin from '../components/MenuLogin';
 import Grid from '@mui/material/Grid';
 import icone from '../images/icone.png';
 import Footer from '../components/Footer';
+import Header from '../components/HeaderLogin';
+import Banner from '../components/Banner';
+import Secoes from '../components/Secoes';
 
 export default function Inicio() {
     const [image, setImage] = useState([])
@@ -20,20 +22,21 @@ export default function Inicio() {
         <div>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <MenuLogin/>
+                    <Banner />
+                    <Header />
                 </Grid>
                 <Grid item xs={4}></Grid>
-                <Grid item xs={4}>
+                <Grid item xs={8}>
                     {image}
                 </Grid>
-                <Grid item xs={4}></Grid>
-                <Grid item xs={5}></Grid>
-                <Grid item xs={3}><h1>Seja Bem-vindo</h1></Grid>
-                <Grid item xs={12}><h2>O que é?</h2> MSBmanager é um aplicativo para gerenciar e controlar os filmes, 
+                <Grid item xs={2}></Grid>
+                <Grid item xs={9}><h1>O que é?</h1> <b>MSBmanager é um aplicativo para gerenciar e controlar os filmes, 
                 séries e livros já lidos/assistidos, podendo marcar se já completo, em que parte está ou 
-                tem interesse!</Grid>
-                <Grid item xs={10}></Grid>
-                <Grid item xs={12}><Footer /></Grid>
+                se tem interesse! </b></Grid>
+                <Grid item xs={12}>
+                    <Secoes />
+                    <Footer />
+                </Grid>
             </Grid>
         </div>
     )

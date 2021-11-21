@@ -7,8 +7,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import '../css/main.css';
-
 export default function Home() {
     const [obras, setObras] = useState([])
 
@@ -23,12 +21,12 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Lista de todas as obras</h1>
             <Grid container spacing={2}>  
-                <Grid item xs={12}></Grid>
+                <Grid item xs={4}></Grid>
+                <Grid item xs={8}><h1>Lista de todas as obras</h1></Grid>
                 {obras.map((row) => (
                     <Grid item xs={4}>
-                        <Card sx={{ display: 'flex', marginTop: '2rem', marginLeft: '2rem', marginRight: '2rem', height: 350}}>
+                        <Card sx={{ display: 'flex', marginLeft: '2rem', marginRight: '2rem', height: 350}}>
                             <CardMedia
                                 component="img"
                                 className="image tamanhoObras"
@@ -52,6 +50,7 @@ export default function Home() {
                         </Card>
                     </Grid>
                 ))}
+                <Grid item xs={12}></Grid>
             </Grid>
         </div>
     )

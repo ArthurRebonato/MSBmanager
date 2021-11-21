@@ -8,9 +8,10 @@ import ObrasLista from './views/ObrasLista'
 import AllObras from './views/AllObras'
 import Contato from './views/Contato'
 import Recado from './views/Recado'
-import Menu from './components/Menu'
 import Inicio from './views/Inicio'
 import Footer from './components/Footer'
+import Header from './components/Header'
+import Banner from './components/Banner'
 
 function App() {
 
@@ -19,7 +20,8 @@ function App() {
       {...rest}
       render={props => isAuthenticated() ? (
         <>
-          <Menu />
+          <Banner />
+          <Header />
           <Component {...props} />
           <Footer />
         </>
