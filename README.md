@@ -6,7 +6,6 @@
 
 ## Bibliotecas utilizadas:
 https://reactrouter.com/web/guides/quick-start  <br />
-https://www.npmjs.com/package/axios  <br />
 https://mui.com/pt/components/text-fields/  <br />
 https://www.npmjs.com/package/firebase  <br />
 https://www.npmjs.com/package/@emotion/styled  <br />
