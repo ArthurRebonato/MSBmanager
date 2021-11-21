@@ -1,15 +1,15 @@
 import React, {useState, useLayoutEffect} from 'react'
 import {getObras} from '../services/Firebase';
-import { Grid } from '@mui/material'
+import MenuLogin from '../components/MenuLogin';
+import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Footer from '../components/Footer';
 
-import '../css/main.css';
-
-export default function Home() {
+export default function AllObras() {
     const [obras, setObras] = useState([])
 
     useLayoutEffect(() => {
@@ -20,19 +20,23 @@ export default function Home() {
         let dados = await getObras()
         setObras(dados)
     }
-
+      
     return (
         <div>
-            <h1>Lista de todas as obras</h1>
-            <Grid container spacing={2}>  
-                <Grid item xs={12}></Grid>
+            <MenuLogin />
+            <Grid container spacing={2}>
+                <Grid item xs={5}></Grid>
+                <Grid item xs={3}>
+                <h1>Todas as obras</h1>
+                </Grid>
+                <Grid item xs={4}></Grid>
                 {obras.map((row) => (
                     <Grid item xs={4}>
                         <Card sx={{ display: 'flex', marginTop: '2rem', marginLeft: '2rem', marginRight: '2rem', height: 350}}>
                             <CardMedia
                                 component="img"
-                                className="image tamanhoObras"
                                 sx={{ width: 151 }}
+                                className="image tamanhoObras"
                                 image={row.capa}
                                 alt="Imagem capa do filme/série/livro"
                             />
@@ -52,6 +56,8 @@ export default function Home() {
                         </Card>
                     </Grid>
                 ))}
+                <Grid item xs={12}></Grid>
+                <Grid item xs={12}><Footer /></Grid>
             </Grid>
         </div>
     )

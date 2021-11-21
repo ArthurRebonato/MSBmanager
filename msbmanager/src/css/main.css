@@ -1,0 +1,14 @@
+.logo {
+    width: 100%;
+}
+
+.image {
+    border: 1px solid rgb(0, 0, 0);
+    width: 100%;
+}
+
+.tamanhoObras {
+    height: 300px;
+    width: 1000px;
+    align-content: center;
+}

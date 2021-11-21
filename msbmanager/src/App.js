@@ -1,11 +1,16 @@
 import React from 'react'
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
+import {HashRouter, Switch, Route, Redirect} from 'react-router-dom'
 import {isAuthenticated} from "./services/Firebase"
 import Login from './views/Login'
 import Home from './views/Home'
-import Obras from './views/Obras'
+import ObrasCadastro from './views/ObrasCadastro'
 import ObrasLista from './views/ObrasLista'
+import AllObras from './views/AllObras'
+import Contato from './views/Contato'
+import Recado from './views/Recado'
 import Menu from './components/Menu'
+import Inicio from './views/Inicio'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -16,6 +21,7 @@ function App() {
         <>
           <Menu />
           <Component {...props} />
+          <Footer />
         </>
       ) : (
         <Redirect to={{pathname:"/", state: {from: props.location}}} />
@@ -25,15 +31,19 @@ function App() {
   }
   
   return (
-    <BrowserRouter>
+    <HashRouter>
         <Switch>
-          <Route path="/" exact={true} component={Login}/>
+          <Route path="/" exact={true} component={Inicio}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/allobras" component={AllObras}/>
+          <Route path="/contato" component={Contato}/>
           <PrivateRoute path="/home" component={Home}/>
-          <PrivateRoute path="/obras" component={Obras}/>
+          <PrivateRoute path="/obrascadastro" component={ObrasCadastro}/>
           <PrivateRoute path="/obraslista" component={ObrasLista}/>
-          <Route path="*" component={Login}/>
+          <PrivateRoute path="/recados" component={Recado}/>
+          <Route path="*" component={Inicio}/>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
   );
 }
 

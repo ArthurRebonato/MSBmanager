@@ -1,6 +1,6 @@
 import React, {useState, useLayoutEffect} from 'react'
 import { Grid } from '@mui/material'
-import {getObras, deleteObras} from '../services/Firebase';
+import {deleteObras, getObrasbyID, getToken} from '../services/Firebase';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,6 +12,8 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+import '../css/main.css';
+
 export default function ObrasLista() {
     const [obras, setObras] = useState([])
 
@@ -20,7 +22,7 @@ export default function ObrasLista() {
     }, [])
 
     const pegarObras = async () => {
-        let dados = await getObras()
+        let dados = await getObrasbyID(getToken())
         setObras(dados)
     }
 
@@ -31,7 +33,7 @@ export default function ObrasLista() {
 
     return (
         <div>
-            <h1>Cadastro Filmes/Séries/Livros</h1>
+            <h1>Lista de obras</h1>
             <Grid item xs={12}>
                 <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 1000 }} size="small" aria-label="a dense table">
@@ -51,8 +53,8 @@ export default function ObrasLista() {
                                         key={row.id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell align="center">{row.capa}</TableCell>
-                                        <TableCell align="center">{row.nome}</TableCell>
+                                        <TableCell align="center"><img className="image" src={row.capa} alt="Imagem da obra"/></TableCell>
+                                        <TableCell align="center"><h2>{row.nome}</h2></TableCell>
                                         <TableCell align="center">{row.categoria}</TableCell>
                                         <TableCell align="center">{row.progresso}</TableCell>
                                         <TableCell align="center">{row.sinopse}</TableCell>

@@ -9,7 +9,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import CommentIcon from '@mui/icons-material/Comment';
-import ContactsIcon from '@mui/icons-material/Contacts';
+import MSBmanager from '../images/msbmanager.png';
+
+import '../css/main.css';
 
 export default function Menu() {
     let history = useHistory();
@@ -20,6 +22,9 @@ export default function Menu() {
 
     return (
         <Grid container spacing={2}>
+                <Grid item xs={2}>
+                    <img className="logo" src={MSBmanager} alt="Logo do site"/>
+                </Grid>
                 <Grid item xs={2}>
                     <Stack direction="row" spacing={2}>
                         <Button variant="outlined" 
@@ -36,7 +41,7 @@ export default function Menu() {
                         <Button variant="outlined" 
                         size="medium" 
                         endIcon={<AddCircleOutlineIcon />} 
-                        onClick={() => history.push("/obras")}
+                        onClick={() => history.push("/obrascadastro")}
                         fullWidth>
                         Fazer Cadastros
                         </Button>
@@ -57,19 +62,10 @@ export default function Menu() {
                     <Stack direction="row" spacing={2}>
                         <Button variant="outlined" 
                         size="medium" 
-                        endIcon={<CommentIcon />} 
+                        endIcon={<CommentIcon />}
+                        onClick={() => history.push("/recados")} 
                         fullWidth>
                         Recados
-                        </Button>
-                    </Stack>
-                </Grid>
-                <Grid item xs={2}>
-                    <Stack direction="row" spacing={2}>
-                        <Button variant="outlined" 
-                        size="medium" 
-                        endIcon={<ContactsIcon />} 
-                        fullWidth>
-                        Contato
                         </Button>
                     </Stack>
                 </Grid>

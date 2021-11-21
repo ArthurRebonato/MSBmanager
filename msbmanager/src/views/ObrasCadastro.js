@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useHistory} from "react-router-dom";
 
-export default function Obras() {
+export default function ObrasCadastro() {
     let history = useHistory();
     const [nome, setNome] = useState("")
     const [sinopse, setSinopse] = useState("")
