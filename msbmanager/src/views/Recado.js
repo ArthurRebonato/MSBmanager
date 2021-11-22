@@ -25,20 +25,20 @@ export default function Recado() {
                 {recados.map((row) => (
                     <Grid item xs={4}>
                         <Card sx={{ width: 'fullWidth', marginLeft: '2rem', marginRight: '2rem', textAlign: 'center'}}>
-                                <CardContent>
-                                    <Typography variant="h5" component="div">
-                                        {row.assunto}
-                                    </Typography>
-                                    <Typography color="text.secondary">
-                                        {row.nome}
-                                    </Typography>
-                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                        {row.email}
-                                    </Typography>
-                                    <Typography variant="body2">
-                                        {row.mensagem}
-                                    </Typography>
-                                </CardContent>
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    {row.assunto}
+                                </Typography>
+                                <Typography color="text.secondary">
+                                    {row.nome}
+                                </Typography>
+                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                    {row.email}
+                                </Typography>
+                                <Typography variant="body2">
+                                    {row.mensagem}
+                                </Typography>
+                            </CardContent>
                         </Card>
                     </Grid>
                 ))}

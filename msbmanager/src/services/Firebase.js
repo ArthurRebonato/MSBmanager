@@ -158,6 +158,55 @@ export const getObrasbyID = (uid) => {
   })
 }
 
+export const getObrasbyCategoria = (categoria) => {
+  return new Promise(async (resolve, reject) => {
+      try{
+          const q = query(collection(db, "obras"), where("categoria", "==", categoria))
+          const querySnapshot = await getDocs(q);
+          let dados = []
+
+          querySnapshot.forEach((doc) => {
+              dados.push({
+                  id: doc.id,
+                  nome: doc.data().nome,
+                  categoria: doc.data().categoria,
+                  capa: doc.data().capa,
+                  progresso: doc.data().progresso,
+                  sinopse: doc.data().sinopse
+              })
+          });
+          resolve(dados)
+      } catch (error) {
+          reject(error)
+      }
+  })
+}
+
+export const getObrasbyIDandCategoria = (uid, categoria) => {
+  return new Promise(async (resolve, reject) => {
+      try{
+          const obras = collection(db, "obras");
+          const q = query(obras, where("token", "==", uid), where("categoria", "==", categoria));
+          const querySnapshot = await getDocs(q);
+          let dados = []
+
+          querySnapshot.forEach((doc) => {
+              dados.push({
+                  id: doc.id,
+                  nome: doc.data().nome,
+                  categoria: doc.data().categoria,
+                  capa: doc.data().capa,
+                  progresso: doc.data().progresso,
+                  sinopse: doc.data().sinopse
+              })
+          });
+          resolve(dados)
+      } catch (error) {
+          reject(error)
+      }
+  })
+}
+
 export const deleteObras = (id) => {
     return new Promise(async (resolve, reject) => {
         try{

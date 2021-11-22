@@ -22,27 +22,33 @@ export default function Contato() {
     const [errorStatus, setErrorStatus] = React.useState(true);
 
     const saveR = async () => {
-        let objeto = {
+        if (nome === "" || email === "" || assunto === "" || mensagem === "") {
+            setMsg("Preencha todos os campos!")
+            setOpen(true)
+            setErrorStatus(true)
+        } else {
+            let objeto = {
             nome: nome,
             email: email,
             assunto: assunto,
             mensagem: mensagem
-        }
-        try{
-            await saveRecados(objeto)
-            setNome("")
-            setEmail("")
-            setAssunto("")
-            setMensagem("")
-            setMsg("Mensagem enviada!")
-            setErrorStatus(false)
-            setOpen(true)
-        } catch(error){
-            setMsg(error)
-            setOpen(true)
-            setErrorStatus(true)
-        }
-       
+            }
+
+            try{
+                await saveRecados(objeto)
+                setNome("")
+                setEmail("")
+                setAssunto("")
+                setMensagem("")
+                setMsg("Mensagem enviada!")
+                setErrorStatus(false)
+                setOpen(true)
+            } catch(error){
+                setMsg(error)
+                setOpen(true)
+                setErrorStatus(true)
+            }
+        }   
     }
 
     return (
@@ -66,7 +72,6 @@ export default function Contato() {
                             onClick={() => {
                             setOpen(false);
                             }}
-                            fullWidth
                         >
                             <CloseIcon fontSize="inherit" />
                         </IconButton>

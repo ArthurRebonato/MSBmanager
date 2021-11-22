@@ -31,7 +31,7 @@ export default function Inicio() {
                 </Grid>
                 <Grid item xs={2}></Grid>
                 <Grid item xs={9}><h1>O que é?</h1> <b>MSBmanager é um aplicativo para gerenciar e controlar os filmes, 
-                séries e livros já lidos/assistidos, podendo marcar se já completo, em que parte está ou 
+                séries e livros já lidos/assistidos, podendo marcar se já completou, em que parte está ou 
                 se tem interesse! </b></Grid>
                 <Grid item xs={12}>
                     <Secoes />

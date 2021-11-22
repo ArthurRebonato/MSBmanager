@@ -24,33 +24,39 @@ export default function ObrasCadastro() {
     const [progresso, setProgresso] = useState("")
     const [msg, setMsg] = useState("")
     const [open, setOpen] = React.useState(false);
+    const [errorStatus, setErrorStatus] = React.useState(true);
 
     const save = async () => {
-        let objeto = {
+        if (nome === "" || sinopse === "" || categoria === "" || capa === "" || progresso === "") {
+            setMsg("Preencha todos os campos!")
+            setOpen(true)
+            setErrorStatus(true)
+        } else {
+            let objeto = {
             nome: nome,
             sinopse: sinopse,
             categoria: categoria,
             capa: capa,
             progresso: progresso
+            }
+            try{
+                await saveObras(objeto)
+                history.push("/obraslista")
+            } catch(error){
+                setMsg(error)
+                setOpen(true)
+            }   
         }
-        try{
-            await saveObras(objeto)
-            history.push("/obraslista")
-        } catch(error){
-            setMsg(error)
-            setOpen(true)
-        }
-       
     }
 
     return (
         <div>
             <Grid container spacing={2}>
-                <Grid item xs={5}></Grid>
-                <Grid item xs={7}><h1>Cadastro Obras</h1></Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} style={{textAlign:'center'}}><h1>Cadastro Obras</h1></Grid>
+                <Grid item xs={4}></Grid>
+                <Grid item xs={4} style={{textAlign:'center'}}>
                     <Collapse in={open}>
-                    <Alert severity="error"
+                    <Alert severity={errorStatus? "error" : "success"}
                         action={
                         <IconButton
                             aria-label="close"
@@ -59,7 +65,6 @@ export default function ObrasCadastro() {
                             onClick={() => {
                             setOpen(false);
                             }}
-                            fullWidth
                         >
                             <CloseIcon fontSize="inherit" />
                         </IconButton>
@@ -70,7 +75,7 @@ export default function ObrasCadastro() {
                     </Alert>
                     </Collapse>
                 </Grid>
-                <Grid item xs={8}></Grid>
+                <Grid item xs={4}></Grid>
                 <Grid item xs={2.5}></Grid>
                 <Grid item xs={4}>
                     <TextField type="text" 

@@ -2054,7 +2054,8 @@
 	.tamanhoObras {
 		height: 250px;
 		width: 1000px;
-		align-content: center;
+		margin-top: 3rem;
+		margin-left: 0.5rem;
 	}
 
 	.image {

@@ -70,7 +70,6 @@ export default function HeaderLogin() {
                         </Grid>
                     </Grid>
                 </nav>
-                <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
             </div>
         </header>
     )

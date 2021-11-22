@@ -96,7 +96,6 @@ function Login() {
                     onClick={() => {
                       setOpen(false);
                     }}
-                    fullWidth
                   >
                     <CloseIcon fontSize="inherit" />
                   </IconButton>
